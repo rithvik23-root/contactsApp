@@ -17,7 +17,19 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
-
+app.post('/contacts', async(req,res)=>{
+    try{
+        const{name,email}=req.body;
+        if(!email||!name){
+            return res.status(400).json({message:'Email and Name are required'});
+        }
+        const contact=new Contact({name,email});
+        await contact.save();
+        res.status(201).json(contact);
+    }catch(err){
+        res.status(500).json({error:err.message});
+    }
+})
 
 
 
