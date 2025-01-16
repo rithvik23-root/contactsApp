@@ -1,24 +1,18 @@
 import React, { useState } from "react";
-import axios from "axios";
 
-const AddContactForm = ({ fetchContacts }) => {
+const ContactForm = ({ onAddContact }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!name || !email) {
-      alert("Both name and email are required!");
+      alert("Name and email are required!");
       return;
     }
-    try {
-      await axios.post("http://localhost:5000/contacts", { name, email });
-      fetchContacts();
-      setName("");
-      setEmail("");
-    } catch (err) {
-      alert("Error adding contact: " + err.response.data.error);
-    }
+    onAddContact(name, email); // Pass data to parent
+    setName("");
+    setEmail("");
   };
 
   return (
@@ -40,4 +34,4 @@ const AddContactForm = ({ fetchContacts }) => {
   );
 };
 
-export default AddContactForm;
+export default ContactForm;
