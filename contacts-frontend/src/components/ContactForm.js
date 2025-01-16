@@ -21,12 +21,14 @@ const ContactForm = ({ onAddContact }) => {
         type="text"
         placeholder="Name"
         value={name}
+        autoComplete="off"
         onChange={(e) => setName(e.target.value)}
       />
       <input
         type="email"
         placeholder="Email"
         value={email}
+        autoComplete="off"
         onChange={(e) => setEmail(e.target.value)}
       />
       <button type="submit">Add Contact</button>

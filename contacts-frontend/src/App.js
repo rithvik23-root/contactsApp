@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ContactList from "./components/ContactList";
 import ContactForm from "./components/ContactForm";
+import './App.css';
 
 const App = () => {
   const [contacts, setContacts] = useState([]);
@@ -26,6 +27,7 @@ const App = () => {
       fetchContacts(); // Refresh the contact list
     } catch (err) {
       console.error("Error adding contact:", err.response?.data?.message || err);
+      alert('Error Adding contact')
     }
   };
 
@@ -50,7 +52,7 @@ const App = () => {
   }, [searchTerm]);
 
   return (
-    <div>
+    <div className="container">
       <h1>Contact List Manager</h1>
 
       {/* Add Contact Form */}

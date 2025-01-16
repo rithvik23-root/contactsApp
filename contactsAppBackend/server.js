@@ -17,6 +17,7 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
+//POST API
 app.post("/contacts", async (req, res) => {
   try {
     const { name, email } = req.body;
@@ -31,11 +32,12 @@ app.post("/contacts", async (req, res) => {
   }
 });
 
+//GET API
 app.get("/contacts", async (req, res) => {
   try {
     const query = req.query.query;
     let filter = {};
-
+//Updating filter with user typed text
     if (query) {
       filter = {
         $or: [
@@ -51,6 +53,7 @@ app.get("/contacts", async (req, res) => {
   }
 });
 
+//DELETE API
 app.delete('/contacts/:id', async (req, res) => {
     try {
       const { id } = req.params;

@@ -5,4 +5,5 @@ const contactSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true }
     });
 
+//Create model name Contacts
 module.exports = mongoose.model('Contact', contactSchema);
